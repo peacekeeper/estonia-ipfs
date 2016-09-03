@@ -49,6 +49,7 @@ public class WriteIPFSServlet extends HttpServlet {
 
 		response.setStatus(200);
 		response.setContentType("application/json");
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().print("{\"ipns\":\"" + ipns + "\",\"hash\":\"" + merkleNode.hash.toBase58() + "\"}");
 	}
 }
