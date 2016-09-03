@@ -1,6 +1,4 @@
-## Quick hack for linking Estonian e-residency to IPFS.
-
-Built during the [Blockchain and Identity Hackathon](http://www.hackathon.com/estonia/tallinn/blockchain-and-identity-hackathon-27210855401) in Tallinn on September 3 2016.
+Built during the [Blockchain and Identity Hackathon](http://www.hackathon.com/estonia/tallinn/blockchain-and-identity-hackathon-27210855401) in Tallinn on September 3rd 2016.
 
 ![alt tag](https://raw.githubusercontent.com/peacekeeper/estonia-ipfs/master/pic2.jpg)
 
@@ -12,7 +10,7 @@ Make sure that you...
  * have installed the [card reader software](https://installer.id.ee/?lang=eng).
  * are running a local [IPFS](http://ipfs.io/) daemon.
  * are serving this demo over a trusted TLS certificate.
- * are not running it over localhost.
+ * are not running it on localhost.
 
 ![alt tag](https://raw.githubusercontent.com/peacekeeper/estonia-ipfs/master/pic1.jpg)
 
