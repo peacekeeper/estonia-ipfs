@@ -1,0 +1,71 @@
+<html>
+<head>
+
+<script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+
+  <script src="gitversion.js"></script>
+  <script src="hwcrypto-legacy.js"></script>
+  <script src="hwcrypto.js"></script>
+  <script src="hex2base.js"></script>
+  
+<script type="text/javascript">
+
+function writeipfs() {
+
+	var writeipfstarget = "http://localhost:8081/writeipfs";
+
+	var data = $("#writeipfsdata").val();
+
+	$.post(writeipfstarget, {"data":data})
+	.done(function() {
+		alert("success!");
+	})
+	.fail(function(err) {
+		alert("error: " + JSON.stringify(err));
+	});
+}
+
+function signipfs() {
+
+	var data = $("#writeipfsdata").val();
+
+	var lang = "en";
+	var hashtype = "SHA-256";
+	var backend = "auto";
+
+    window.hwcrypto.debug().then(function(response) {
+      alert("Debug: " + response);
+    });
+
+
+    if (!window.hwcrypto.use(backend)) {
+      alert("Selecting backend failed.");
+    }
+
+    window.hwcrypto.getCertificate({lang:lang}).then(function(response) {
+      var cert = response;
+      alert("Using certificate:\n" + hexToPem(response.hex));
+      window.hwcrypto.sign(cert, {type: hashtype, hex: data}, {lang: lang}).then(function(response) {
+        alert("Generated signature:\n" + response.hex.match(/.{1,64}/g).join("\n"));
+      }, function(err) {
+        alert("sign() failed: " + err);
+      });
+    }, function(err) {
+      alert("getCertificate() failed: " + err);
+    });
+}
+
+</script>
+
+</head>
+<body>
+<p>
+<button onclick="writeipfs();">Write to IPFS:</button><br>
+<button onclick="signipfs();">Sign with e-residency card</button><br>
+<textarea id="writeipfsdata" type="text" cols="80" rows="20">
+{name:'Markus Sabadello',location:'Vienna'}
+</textarea>
+</p>
+<hr>
+</body>
+</html>
