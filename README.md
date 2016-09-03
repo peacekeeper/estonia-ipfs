@@ -27,3 +27,8 @@ To build and run the demo.
  * Figure out how to share my IPNS address with a relying party in an easy way.
  * Can the e-residency certificate or serial number (together with a secret) somehow be cryptographically linked to my IPNS address?
  * This could be integrated into http://smartid.ee/
+
+### About
+
+Markus Sabadello, Danube Tech, https://danubetech.com/
+
