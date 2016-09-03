@@ -14,25 +14,36 @@
     * { margin: 10px; }
 	.preformatted {
 	    font-family: monospace;
-	    white-space: pre;
 	}  
+	.result {
+	    background-color: gray;
+	    color: white;
+	    font-family: monospace;
+	    white-space: pre;
+	}
   </style>
   
 <script type="text/javascript">
 
 function writeipfs() {
 
-	var writeipfstarget = "http://localhost:8081/writeipfs";
+	var writeipfstarget = "writeipfs";
 
-	var data = $("#writeipfsdata").val();
+	var data = {data:$("#writeipfsdata").val()};
 
-	$.post(writeipfstarget, {"data":data})
-	.done(function() {
-		alert("success!");
-	})
-	.fail(function(err) {
-		alert("error: " + JSON.stringify(err));
-	});
+   $.ajax({
+        url: writeipfstarget,
+        type: 'post',
+        dataType: 'json',
+        success: function (data) {
+            $("#result1").text(data.hash);
+            $("#result2").text(data.ipns);
+        },
+        fail: function (err) {
+		    alert("error: " + JSON.stringify(err));
+        },
+        data: data
+    });
 }
 
 function signipfs() {
@@ -74,11 +85,14 @@ function signipfs() {
 
 </head>
 <body>
-<p><button class="topcoat-button--large" onclick="writeipfs();">Write to IPFS:</button></p>
-<p><button class="topcoat-button--large" onclick="signipfs();">Sign with E-Residency card</button></p>
-<textarea class="topcoat-textarea .preformatted" id="writeipfsdata" cols="80" rows="8">
+<h1>Demo for linking Estonian e-residency to IPFS.</h1>
+<p><button class="topcoat-button--large" onclick="signipfs();">Sign with E-Residency card</button>
+&nbsp;&nbsp;<button class="topcoat-button--large" onclick="writeipfs();">Write to IPFS</button></p>
+<textarea class="topcoat-textarea preformatted" id="writeipfsdata" cols="80" rows="8">
 {"name":"Markus Sabadello","location":"Vienna"}
 </textarea>
 <hr>
+<p id="result1" class="result">...Wait</p>
+<p id="result2" class="result">...Wait</p>
 </body>
 </html>

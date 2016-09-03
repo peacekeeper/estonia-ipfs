@@ -6,7 +6,7 @@
 	<artifactId>estonia-ipfs</artifactId>
 	<packaging>war</packaging>
 	<version>0.1-SNAPSHOT</version>
-	<name>Estonia + IPFS</name>
+	<name>Estonia+IPFS Hack</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

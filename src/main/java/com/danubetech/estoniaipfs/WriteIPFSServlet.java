@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.util.Collections;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,11 @@ public class WriteIPFSServlet extends HttpServlet {
 		MerkleNode merkleNode = Config.ipfs.object.put(Collections.singletonList(gson.toJson(ipfsObject).getBytes(Charset.forName("UTF-8")))).get(0);
 		log.info("MERKLENODE NAME: " + merkleNode.hash.toBase58());
 
+		String ipns = (String) Config.ipfs.name.publish(merkleNode.hash).get("Name");
+		log.info("IPNS ID:" + ipns);
+
 		response.setStatus(200);
+		response.setContentType("application/json");
+		response.getWriter().print("{\"ipns\":\"/ipns/" + ipns + "\",\"hash\":\"/ipfs/" + merkleNode.hash.toBase58() + "\"}");
 	}
 }
