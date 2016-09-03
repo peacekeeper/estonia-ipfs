@@ -26,6 +26,7 @@ To build and run the demo.
  * Implement demo relying part that accepts e-residency card and IPNS address.
  * Figure out how to share my IPNS address with a relying party in an easy way.
  * Can the e-residency certificate or serial number (together with a secret) somehow be cryptographically linked to my IPNS address?
+ * Use IPNS path(s) instead of IPNS root address.
  * This could be integrated into http://smartid.ee/
 
 ### About
