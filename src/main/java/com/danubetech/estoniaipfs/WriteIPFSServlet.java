@@ -37,9 +37,9 @@ public class WriteIPFSServlet extends HttpServlet {
 		JsonObject ipfsData = gson.fromJson(new StringReader(data), JsonObject.class);
 		JsonArray ipfsLinks = new JsonArray();
 		JsonObject ipfsObject = new JsonObject();
-
 		ipfsObject.addProperty("Data", gson.toJson(ipfsData));
 		ipfsObject.add("Links", ipfsLinks);
+		log.info("OBJECT: " + gson.toJson(ipfsObject));
 
 		MerkleNode merkleNode = Config.ipfs.object.put(Collections.singletonList(gson.toJson(ipfsObject).getBytes(Charset.forName("UTF-8")))).get(0);
 		log.info("MERKLENODE NAME: " + merkleNode.hash.toBase58());
@@ -49,6 +49,6 @@ public class WriteIPFSServlet extends HttpServlet {
 
 		response.setStatus(200);
 		response.setContentType("application/json");
-		response.getWriter().print("{\"ipns\":\"/ipns/" + ipns + "\",\"hash\":\"/ipfs/" + merkleNode.hash.toBase58() + "\"}");
+		response.getWriter().print("{\"ipns\":\"" + ipns + "\",\"hash\":\"" + merkleNode.hash.toBase58() + "\"}");
 	}
 }

@@ -13,3 +13,9 @@ Just run
 To build and run the demo.
 
 Then open **http://localhost:8081** in your browser.
+
+### TODO
+
+ * Use JWS instead of quick&dirty signature
+ * Figure out how relying party can get the IPNS address
+ * Can the ID card's certificate or serial number (together with a secret) somehow be cryptographically linked to my IPFS address?
