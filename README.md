@@ -6,7 +6,7 @@ Make sure that you...
 
  * have your Estonian e-residency card attached with working card reader.
  * have installed the [card reader software](https://installer.id.ee/?lang=eng).
- * are running a local IPFS daemon.
+ * are running a local [IPFS](http://ipfs.io/) daemon.
  * are serving this demo over a valid TLS certificate.
 
 ### How to build
