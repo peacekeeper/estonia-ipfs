@@ -5,14 +5,17 @@
 
 <script type="text/javascript" src="jquery-2.0.3.min.js"></script>
 
-  <script src="gitversion.js"></script>
+  <script src="sha256.js"></script>
+  <script src="hex2base.js"></script>
   <script src="hwcrypto-legacy.js"></script>
   <script src="hwcrypto.js"></script>
-  <script src="hex2base.js"></script>
   
   <style>
     * { margin: 10px; }
-    textarea { font-face: courier; }
+	.preformatted {
+	    font-family: monospace;
+	    white-space: pre;
+	}  
   </style>
   
 <script type="text/javascript">
@@ -34,25 +37,31 @@ function writeipfs() {
 
 function signipfs() {
 
-	var data = convertToHex($("#writeipfsdata").val());
+	var jsonstring = $("#writeipfsdata").val();
+	var json = $.parseJSON(jsonstring);
+	data = sha256(jsonstring);
 
 	var lang = "en";
 	var hashtype = "SHA-256";
 	var backend = "auto";
 
     window.hwcrypto.debug().then(function(response) {
-      alert("Debug: " + response);
+      //alert("Debug: " + response);
     });
 
     if (!window.hwcrypto.use(backend)) {
       alert("Selecting backend failed.");
+      return;
     }
 
     window.hwcrypto.getCertificate({lang:lang}).then(function(response) {
       var cert = response;
       alert("Using certificate:\n" + hexToPem(response.hex));
       window.hwcrypto.sign(cert, {type: hashtype, hex: data}, {lang: lang}).then(function(response) {
-        alert("Generated signature:\n" + response.hex.match(/.{1,64}/g).join("\n"));
+        var sig = response.hex.match(/.{1,64}/g).join("\n");
+        alert("Generated signature:\n" + sig);
+        json.sig = sig;
+	    $("#writeipfsdata").val(JSON.stringify(json));
       }, function(err) {
         alert("sign() failed: " + err);
       });
@@ -67,10 +76,9 @@ function signipfs() {
 <body>
 <p><button class="topcoat-button--large" onclick="writeipfs();">Write to IPFS:</button></p>
 <p><button class="topcoat-button--large" onclick="signipfs();">Sign with E-Residency card</button></p>
-<textarea class="topcoat-textarea" id="writeipfsdata" type="text" cols="80" rows="8">
-{name:'Markus Sabadello',location:'Vienna'}
+<textarea class="topcoat-textarea .preformatted" id="writeipfsdata" cols="80" rows="8">
+{"name":"Markus Sabadello","location":"Vienna"}
 </textarea>
-</p>
 <hr>
 </body>
 </html>
