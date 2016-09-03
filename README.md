@@ -1,6 +1,6 @@
 ## Quick hack for linking Estonian e-residency to IPFS.
 
-Built during the [Blockchain and Identity Hackathon](http://www.hackathon.com/estonia/tallinn/blockchain-and-identity-hackathon-27210855401) in Tallin on September 3 2016.
+Built during the [Blockchain and Identity Hackathon](http://www.hackathon.com/estonia/tallinn/blockchain-and-identity-hackathon-27210855401) in Tallinn on September 3 2016.
 
 ### Prerequisites
 
