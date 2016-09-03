@@ -70,7 +70,6 @@ var hwcrypto = function hwcrypto() {
     function DigiDocPlugin() {
         this._name = "NPAPI/BHO for application/x-digidoc";
         var p = loadPluginFor(digidoc_mime);
-        alert(p);
         var certificate_ids = {};
         function code2str(err) {
             _debug("Error: " + err + " with: " + p.errorMessage);
@@ -287,7 +286,7 @@ var hwcrypto = function hwcrypto() {
         }
         return _autodetect().then(function(result) {
             if (location.protocol !== "https:" && location.protocol !== "file:") {
-                //return Promise.reject(new Error(NOT_ALLOWED));
+                return Promise.reject(new Error(NOT_ALLOWED));
             }
             return _backend.getCertificate(options).then(function(certificate) {
                 if (certificate.hex && !certificate.encoded) certificate.encoded = _hex2array(certificate.hex);
@@ -308,7 +307,7 @@ var hwcrypto = function hwcrypto() {
         if (hash.value && !hash.hex) hash.hex = _array2hex(hash.value);
         return _autodetect().then(function(result) {
             if (location.protocol !== "https:" && location.protocol !== "file:") {
-                //return Promise.reject(new Error(NOT_ALLOWED));
+                return Promise.reject(new Error(NOT_ALLOWED));
             }
             return _backend.sign(cert, hash, options).then(function(signature) {
                 if (signature.hex && !signature.value) signature.value = _hex2array(signature.hex);
