@@ -5,7 +5,7 @@ Quick hack for linking Estonian e-residency to IPFS.
 Make sure that you...
 
  * have your Estonian e-residency card attached with working card reader.
- * have installed the [https://installer.id.ee/?lang=eng](card reader software).
+ * have installed the [card reader software](https://installer.id.ee/?lang=eng).
  * are running a local IPFS daemon.
  * are serving this demo over a valid TLS certificate.
 
