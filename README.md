@@ -1,4 +1,4 @@
-Demo for linking Estonian e-residency to IPFS.
+Quick hack for linking Estonian e-residency to IPFS.
 
 ### Prerequisites
 
@@ -16,6 +16,6 @@ Then open **http://localhost:8081** in your browser.
 
 ### TODO
 
- * Use JWS instead of quick&dirty signature
- * Figure out how relying party can get the IPNS address
- * Can the ID card's certificate or serial number (together with a secret) somehow be cryptographically linked to my IPFS address?
+ * Use JSON Web Signature (JWS) instead of quick&dirty signature.
+ * Figure out how to share my IPNS address with a relying party in an easy way.
+ * Can the e-residency certificate or serial number (together with a secret) somehow be cryptographically linked to my IPNS address?
